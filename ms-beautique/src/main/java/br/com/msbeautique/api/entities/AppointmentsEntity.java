@@ -24,7 +24,7 @@ import lombok.ToString;
 @Table(name = "appointments")
 public class AppointmentsEntity extends BaseEntity{
 
-  @Column(nullable = false, updatable = true)
+  @Column(nullable = false)
   private LocalDateTime dateTime;
 
   @Column(nullable = false)
@@ -37,7 +37,7 @@ public class AppointmentsEntity extends BaseEntity{
   private CustomerEntity customer;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "beauty_procedure_id", nullable = false)
+  @JoinColumn(name = "beauty_procedure_id")
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private BeautyProceduresEntity beautyProcedure;

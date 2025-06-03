@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DiffGenerationConfig">
+    <option name="sourceDbValue" value="249b3852-92a8-41f8-9a57-f6ca39f0d547__beautique_beautique_schema" />
+    <option name="sourceDiffType" value="DB" />
+    <option name="sourceModelValue" value="ms-beautique.main:ms-beautique.main" />
+    <option name="targetDbValue" value="249b3852-92a8-41f8-9a57-f6ca39f0d547" />
+  </component>
+</project>
