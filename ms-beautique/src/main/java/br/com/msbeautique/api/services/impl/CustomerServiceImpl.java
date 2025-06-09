@@ -5,6 +5,8 @@ import br.com.msbeautique.api.entities.CustomerEntity;
 import br.com.msbeautique.api.mappers.CustomerMapper;
 import br.com.msbeautique.api.repositories.CustomerEntityRepository;
 import br.com.msbeautique.api.services.CustomerService;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,21 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerEntity customerEntity = customerMapper.toEntity(customerDTO);
     customerEntity = customerEntityRepository.save(customerEntity);
     return customerMapper.toDto(customerEntity);
+  }
+
+  @Override
+  public CustomerDto update(Long id, CustomerDto customerDTO) {
+    final Optional<CustomerEntity> foundCustomer = this.customerEntityRepository.findById(id);
+    if(foundCustomer.isEmpty()){
+      throw new NoSuchElementException("Customer not found");
+    }
+    final CustomerEntity entity = customerMapper.toEntity(customerDTO);
+    entity.setId(id);
+    entity.setAppointments(foundCustomer.get().getAppointments());
+    entity.setCreatedAt(foundCustomer.get().getCreatedAt());
+
+    final CustomerEntity savedEntity = this.customerEntityRepository.save(entity);
+    return this.customerMapper.toDto(savedEntity);
   }
 
   @Override

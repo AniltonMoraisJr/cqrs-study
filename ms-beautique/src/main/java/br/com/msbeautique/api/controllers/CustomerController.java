@@ -4,6 +4,7 @@ import br.com.msbeautique.api.dtos.CustomerDto;
 import br.com.msbeautique.api.services.CustomerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,11 @@ public class CustomerController {
   @PostMapping("/")
   public ResponseEntity<CustomerDto> create(@RequestBody CustomerDto customerDto) {
     return ResponseEntity.ok(customerService.create(customerDto));
+  }
+
+  @PatchMapping("/{id}")
+  public ResponseEntity<CustomerDto> create(@PathVariable long id, @RequestBody CustomerDto customerDto) {
+    return ResponseEntity.ok(customerService.update(id, customerDto));
   }
 
   @DeleteMapping("/{id}")
