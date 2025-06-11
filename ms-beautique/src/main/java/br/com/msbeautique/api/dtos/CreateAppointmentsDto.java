@@ -9,10 +9,9 @@ import lombok.Builder;
  * DTO for {@link br.com.msbeautique.api.entities.AppointmentsEntity}
  */
 @Builder
-public record AppointmentsDto(long id, LocalDateTime dateTime,
-                              boolean appointmentOpen,
-                              Long customer,
-                              Long beautyProcedure) implements Serializable {
+public record CreateAppointmentsDto(LocalDateTime dateTime,
+                                    Long customer,
+                                    Long beautyProcedure) implements Serializable {
 
   @Serial
   private static final long serialVersionUID = 3938062716119968483L;

@@ -1,6 +1,8 @@
 package br.com.msbeautique.api.controllers;
 
 import br.com.msbeautique.api.dtos.AppointmentsDto;
+import br.com.msbeautique.api.dtos.CreateAppointmentsDto;
+import br.com.msbeautique.api.dtos.UpdateAppointmentsDto;
 import br.com.msbeautique.api.services.AppointmentsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,12 +24,12 @@ public class AppointmentsController {
   }
 
   @PostMapping("/")
-  public ResponseEntity<AppointmentsDto> create(@RequestBody AppointmentsDto request) {
+  public ResponseEntity<AppointmentsDto> create(@RequestBody CreateAppointmentsDto request) {
     return ResponseEntity.ok(appointmentsService.create(request));
   }
 
   @PatchMapping("/{id}")
-  public ResponseEntity<AppointmentsDto> create(@PathVariable long id, @RequestBody AppointmentsDto request) {
+  public ResponseEntity<AppointmentsDto> update(@PathVariable long id, @RequestBody UpdateAppointmentsDto request) {
     return ResponseEntity.ok(appointmentsService.update(id, request));
   }
 
