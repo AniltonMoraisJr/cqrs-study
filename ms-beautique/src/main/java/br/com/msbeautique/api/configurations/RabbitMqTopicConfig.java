@@ -4,12 +4,12 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@Configurable
+@Configuration
 public class RabbitMqTopicConfig {
-  final static String EXCHANGE_NAME = "beautiqueExchange";
+  public final static String EXCHANGE_NAME = "beautiqueExchange";
 
   @Bean
   TopicExchange topicExchange() {
@@ -22,7 +22,17 @@ public class RabbitMqTopicConfig {
   }
 
   @Bean
+  public Queue beautyProcedureQueue() {
+    return new Queue("beautyProcedureQueue");
+  }
+
+  @Bean
   Binding bindingCustomer(Queue customerQueue, TopicExchange topicExchange) {
     return BindingBuilder.bind(customerQueue).to(topicExchange).with("customer.#");
+  }
+
+  @Bean
+  Binding bindingBeautyProcedure(Queue beautyProcedureQueue, TopicExchange topicExchange) {
+    return BindingBuilder.bind(beautyProcedureQueue).to(topicExchange).with("beautyProcedure.#");
   }
 }

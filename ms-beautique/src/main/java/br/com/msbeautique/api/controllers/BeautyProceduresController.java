@@ -34,6 +34,6 @@ public class BeautyProceduresController {
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> delete(@PathVariable long id) {
     beautyProceduresService.delete(id);
-    return ResponseEntity.ok().build();
+    return ResponseEntity.noContent().build();
   }
 }
