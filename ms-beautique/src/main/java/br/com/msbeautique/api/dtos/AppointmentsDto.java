@@ -1,7 +1,5 @@
 package br.com.msbeautique.api.dtos;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Builder;
 
@@ -12,9 +10,6 @@ import lombok.Builder;
 public record AppointmentsDto(long id, LocalDateTime dateTime,
                               boolean appointmentOpen,
                               Long customer,
-                              Long beautyProcedure) implements Serializable {
-
-  @Serial
-  private static final long serialVersionUID = 3938062716119968483L;
+                              Long beautyProcedure) {
 
 }

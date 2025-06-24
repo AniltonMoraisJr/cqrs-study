@@ -28,6 +28,19 @@ services:
       - './../rabbitmq-beautique/rabbitmq-log:/var/log/rabbitmq'
     networks:
       - beautique-network
+  mongodb-beautique:
+    image: 'mongo:latest'
+    hostname: mongodb-beautique
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: mongopassword
+    volumes:
+      - './../db-mongodb:/data/db'
+      - './mongo-init.sh:/docker-entrypoint-initidb.d/mongo-init.sh'
+    ports:
+      - '37017:27017'
+    networks:
+      - beautique-network
 networks:
   beautique-network:
     driver: bridge
