@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -17,6 +18,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -37,4 +39,20 @@ public class CustomerEntity extends BaseEntity{
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
   private List<AppointmentsEntity> appointments;
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    CustomerEntity that = (CustomerEntity) o;
+    return Objects.equals(name, that.name) && Objects.equals(email, that.email)
+        && Objects.equals(phone, that.phone) && Objects.equals(appointments,
+        that.appointments);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, email, phone, appointments);
+  }
 }

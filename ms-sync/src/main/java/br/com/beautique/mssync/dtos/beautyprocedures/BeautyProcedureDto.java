@@ -4,9 +4,12 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import lombok.Builder;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Builder
-public record BeautyProcedureDto(long id, String name, String description, BigDecimal price) implements
+@Document(collection = "beauty_procedures")
+public record BeautyProcedureDto(@Id long id, String name, String description, BigDecimal price) implements
     Serializable {
 
   @Serial

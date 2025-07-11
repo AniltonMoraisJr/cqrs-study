@@ -6,9 +6,12 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Builder;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Builder
-public record FullAppointmentDto(long id, LocalDateTime dateTime, boolean appointmentsOpen,
+@Document(collection = "appointments")
+public record FullAppointmentDto(@Id long id, LocalDateTime dateTime, boolean appointmentsOpen,
                                  CustomerDto customer,
                                  BeautyProcedureDto beautyProcedure) implements Serializable {
 

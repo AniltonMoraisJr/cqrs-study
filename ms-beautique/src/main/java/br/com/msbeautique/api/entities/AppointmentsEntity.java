@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Getter
 @Setter
@@ -22,7 +23,7 @@ import lombok.ToString;
 @Builder
 @Entity
 @Table(name = "appointments")
-public class AppointmentsEntity extends BaseEntity{
+public class AppointmentsEntity extends BaseEntity {
 
   @Column(nullable = false)
   private LocalDateTime dateTime;
@@ -30,12 +31,14 @@ public class AppointmentsEntity extends BaseEntity{
   @Column(nullable = false)
   private boolean appointmentOpen;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "customer_id", nullable = false)
+  @Exclude
   private CustomerEntity customer;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "beauty_procedure_id")
+  @Exclude
   private BeautyProceduresEntity beautyProcedure;
 
 }
